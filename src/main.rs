@@ -29,46 +29,46 @@ impl std::fmt::Display for Node {
     }
 }
 
-fn add_child(mut current_node: Rc<RefCell<Node>>, mut new_node: Rc<RefCell<Node>>) -> Rc<RefCell<Node>>{
+fn add_child(current_node: Rc<RefCell<Node>>, new_node: Rc<RefCell<Node>>) -> Rc<RefCell<Node>>{
     current_node.borrow_mut().add_child(new_node.clone());
     new_node
 }
 
 fn main() {
-    let mut root = Rc::new(RefCell::new(Node{
+    let root = Rc::new(RefCell::new(Node{
         data: "Hi, i'm root!",
         parent: None,
         children: vec![],
     }));
     let mut current_node = root.clone();
 
-    let mut child = Rc::new(RefCell::new(Node{
+    let child = Rc::new(RefCell::new(Node{
         data: "Hi, i'm a child!",
         parent: Some(root.clone()),
         children: vec![],
     }));
     current_node = add_child(current_node, child);
 
-    let mut grandchild = Rc::new(RefCell::new(Node{
+    let grandchild = Rc::new(RefCell::new(Node{
         data: "Hi, i'm a grandchild!",
         parent: Some(current_node.clone()),
         children: vec![],
     }));
     current_node = add_child(current_node, grandchild);
-    let mut next_node = current_node.borrow().parent.as_ref().unwrap().clone();
+    let next_node = current_node.borrow().parent.as_ref().unwrap().clone();
     current_node = next_node;
 
-    let mut grandchild = Rc::new(RefCell::new(Node{
+    let grandchild = Rc::new(RefCell::new(Node{
         data: "Hi, i'm another grandchild!",
         parent: Some(current_node.clone()),
         children: vec![],
     }));
     current_node = add_child(current_node, grandchild);
-    let mut next_node = current_node.borrow().parent.as_ref().unwrap().clone();
+    let next_node = current_node.borrow().parent.as_ref().unwrap().clone();
     current_node = next_node;
-    let mut next_node = current_node.borrow().parent.as_ref().unwrap().clone();
+    let next_node = current_node.borrow().parent.as_ref().unwrap().clone();
     current_node = next_node;
-    let mut grandchild = Rc::new(RefCell::new(Node{
+    let grandchild = Rc::new(RefCell::new(Node{
         data: "Hi, i'm a child!",
         parent: Some(current_node.clone()),
         children: vec![],

@@ -4,7 +4,7 @@ use std::rc::Rc;
 
 struct Node {
     data: &'static str,
-    pub parent: Option<Rc<RefCell<Node>>>,
+    parent: Option<Rc<RefCell<Node>>>,
     children: Vec<Rc<RefCell<Node>>>,
 }
 

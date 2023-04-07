@@ -17,7 +17,7 @@ fn main() {
     current_node = grandchild;
 
     // Move up a node
-    let next_node = current_node.parent().as_ref().unwrap().clone();
+    let next_node = current_node.parent().unwrap();
     current_node = next_node;
 
     let grandchild = Node::new("Hi, i'm another grandchild!");
@@ -25,9 +25,9 @@ fn main() {
     current_node = grandchild;
 
     // Move up two nodes
-    let next_node = current_node.parent().as_ref().unwrap().clone();
+    let next_node = current_node.parent().unwrap();
     current_node = next_node;
-    let next_node = current_node.parent().as_ref().unwrap().clone();
+    let next_node = current_node.parent().unwrap();
     current_node = next_node;
 
     let grandchild = Node::new("Hi, i'm a child!");
